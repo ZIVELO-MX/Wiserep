@@ -98,7 +98,7 @@ export default function Features() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-end justify-between mb-10">
           <div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#0F172A] dark:text-[#F1F5F9] mb-2">
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-[#0F172A] dark:text-[#F1F5F9] mb-2">
               Funciones
             </h2>
             <p className="text-[#475569] dark:text-[#94A3B8] text-base max-w-md">

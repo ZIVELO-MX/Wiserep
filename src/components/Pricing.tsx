@@ -50,7 +50,7 @@ export default function Pricing() {
     <section id="precios" className="py-20 px-4 sm:px-6 bg-white dark:bg-[#0F172A]">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-14">
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#0F172A] dark:text-[#F1F5F9] mb-4">
+          <h2 className="font-display text-3xl sm:text-4xl font-bold text-[#0F172A] dark:text-[#F1F5F9] mb-4">
             Precios
           </h2>
           <p className="text-[#475569] dark:text-[#94A3B8] text-lg max-w-xl mx-auto">

@@ -1,5 +1,7 @@
 # WiseRep — Design System
 
+> Documento de referencia rápida. Ver `design_propusal.md` para la especificación completa.
+
 ## Filosofía de diseño
 
 WiseRep debe sentirse **limpio, confiable y enfocado**. No es una app de fitness agresiva ni una app médica seria — es una herramienta práctica para atletas reales.
@@ -27,8 +29,7 @@ Es el color de marca compartido con el ecosistema **Gymoss**.
 
 ### Secundario — Gymoss Ink `#1E3A8A`
 
-El azul oscuro del ecosistema Gymoss. Se usa para secciones de fondo oscuro,
-énfasis de marca y el bloque del ecosistema en la landing.
+El azul oscuro del ecosistema Gymoss. Fondo de la sección Gymoss, énfasis de marca, wordmark del logo.
 
 | Token          | Hex       | Uso                                              |
 |----------------|-----------|--------------------------------------------------|
@@ -36,15 +37,15 @@ El azul oscuro del ecosistema Gymoss. Se usa para secciones de fondo oscuro,
 
 ### Neutrales
 
-| Token              | Hex       | Uso                              |
-|--------------------|-----------|----------------------------------|
-| `--bg`             | `#F8FAFC` | Fondo de página                  |
-| `--surface`        | `#FFFFFF` | Cards, modales, superficies       |
-| `--surface-soft`   | `#F1F5F9` | Fondos secundarios, inputs        |
-| `--text-main`      | `#0F172A` | Texto principal                  |
-| `--text-secondary` | `#475569` | Texto de apoyo, descripciones    |
-| `--text-muted`     | `#94A3B8` | Placeholders, labels pequeños    |
-| `--border`         | `#E2E8F0` | Bordes de cards, divisores       |
+| Token              | Light     | Dark      | Uso                              |
+|--------------------|-----------|-----------|----------------------------------|
+| `--bg`             | `#F8FAFC` | `#0F172A` | Fondo de página                  |
+| `--surface`        | `#FFFFFF` | `#1E293B` | Cards, modales, superficies       |
+| `--surface-soft`   | `#F1F5F9` | `#1E293B` | Fondos secundarios, inputs        |
+| `--text-main`      | `#0F172A` | `#F1F5F9` | Texto principal                  |
+| `--text-secondary` | `#475569` | `#94A3B8` | Texto de apoyo, descripciones    |
+| `--text-muted`     | `#94A3B8` | `#475569` | Placeholders, labels pequeños    |
+| `--border`         | `#E2E8F0` | `#334155` | Bordes de cards, divisores       |
 
 ### Semánticos
 
@@ -58,57 +59,49 @@ El azul oscuro del ecosistema Gymoss. Se usa para secciones de fondo oscuro,
 
 ## Tipografía
 
-### Display — Plus Jakarta Sans `--font-jakarta`
+### Display — Plus Jakarta Sans `--font-jakarta` / `font-display`
 
-Usada para headings grandes (`h1`, `h2`, títulos de sección).
-Cargada desde Google Fonts con pesos `600`, `700`, `800`.
-
-Características: ligeramente más expresiva que Geist, da carácter a los títulos
-sin perder legibilidad. Funciona bien en tamaños grandes para la landing.
+Headings grandes: `h1`, `h2`, títulos de sección. Cargada desde Google Fonts, pesos 600/700/800.
 
 ```
 font-family: var(--font-jakarta), system-ui, sans-serif;
-weights: 600 / 700 / 800
+Tailwind: font-display font-bold
 ```
 
-**Ejemplo de uso:**
-```tsx
-<h1 className="font-display font-bold text-5xl">
-  Entrena mejor, repetición por repetición.
-</h1>
-```
+### UI / Body — Geist Sans `--font-geist-sans` / `font-sans`
 
-### UI / Body — Geist Sans `--font-geist-sans`
-
-Usada para todo el cuerpo de texto, labels, botones, navegación y UI en general.
-Cargada desde Google Fonts. Tipografía técnica y neutral, optimizada para interfaces.
+Todo el cuerpo de texto, labels, botones, navegación. Pesos 400/500/600/700.
 
 ```
 font-family: var(--font-geist-sans), system-ui, sans-serif;
-weights: 400 / 500 / 600 / 700
 ```
 
-### Escala tipográfica recomendada
+### Escala tipográfica
 
 | Rol             | Clase Tailwind           | Fuente   | Peso |
 |-----------------|--------------------------|----------|------|
 | Heading XL      | `text-5xl` / `text-6xl`  | Jakarta  | 800  |
 | Heading L       | `text-4xl`               | Jakarta  | 700  |
-| Heading M       | `text-2xl` / `text-3xl`  | Jakarta  | 700  |
+| Heading M       | `text-3xl`               | Jakarta  | 700  |
 | Subtítulo       | `text-xl`                | Geist    | 500  |
 | Body            | `text-base`              | Geist    | 400  |
 | Body small      | `text-sm`                | Geist    | 400  |
-| Label / Caption | `text-xs`                | Geist    | 500–600 (uppercase + tracking) |
+| Label / Caption | `text-xs` uppercase      | Geist    | 500–600 |
 
 ---
 
 ## Espaciado y radios
 
-- **Border radius base:** `rounded-xl` (12px) para cards y contenedores
-- **Border radius large:** `rounded-2xl` (16px) para cards del app mockup y secciones
-- **Border radius pill:** `rounded-full` para badges, chips y botones pill
-- **Gap base entre cards:** `gap-5` o `gap-6`
-- **Padding de sección:** `py-20 px-4 sm:px-6`
+| Elemento  | Valor | Tailwind         |
+|-----------|-------|------------------|
+| Buttons   | 12px  | `rounded-xl`     |
+| Cards     | 16px  | `rounded-2xl`    |
+| Badges    | full  | `rounded-full`   |
+| Inputs    | 12px  | `rounded-xl`     |
+
+- **Section padding:** `py-20 px-4 sm:px-6`
+- **Card padding:** `p-6` / `p-8` (pricing)
+- **Gap:** `gap-5` (20px) / `gap-6` (24px)
 
 ---
 
@@ -121,28 +114,48 @@ bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-semibold px-8 py-3 rounded-xl
 
 ### Botón secundario (outline)
 ```
-border border-[#E2E8F0] hover:border-[#2563EB] text-[#0F172A] bg-white px-8 py-3 rounded-xl
+border border-[#E2E8F0] dark:border-[#1E293B] hover:border-[#2563EB]
+text-[#0F172A] dark:text-[#F1F5F9] bg-white dark:bg-[#1E293B] px-8 py-3 rounded-xl
 ```
 
 ### Badge / Chip
 ```
-text-xs font-semibold uppercase tracking-widest text-[#2563EB] bg-[#EFF6FF] px-3 py-1 rounded-full
+text-xs font-semibold uppercase tracking-widest
+text-[#2563EB] bg-[#EFF6FF] dark:bg-[#1E3A8A]/50 px-3 py-1 rounded-full
 ```
 
 ### Card
 ```
-bg-[#F8FAFC] border border-[#E2E8F0] rounded-2xl p-6 hover:border-[#2563EB]/30 hover:shadow-sm
+bg-[#F8FAFC] dark:bg-[#1E293B]
+border border-[#E2E8F0] dark:border-[#334155]
+rounded-2xl p-6 hover:border-[#2563EB]/40 hover:shadow-sm
 ```
+
+### Two-tone headline
+```tsx
+<h2 className="font-display text-4xl font-bold text-[#0F172A] dark:text-[#F1F5F9]">
+  Título <span className="text-[#2563EB]">en azul.</span>
+</h2>
+```
+
+---
+
+## Dark Mode
+
+Dark mode es **class-based** (`.dark` en `<html>`), activado via toggle con View Transitions API.
+El toggle guarda la preferencia en `localStorage` y respeta `prefers-color-scheme` como valor inicial.
+
+Animación de transición: `clipPath` de `inset(0 0 100% 0)` → `inset(0)` — wipe vertical top-down de 600ms.
 
 ---
 
 ## Tono visual por sección
 
-| Sección        | Fondo      | Texto principal | Acento        |
-|----------------|------------|-----------------|---------------|
-| Hero           | `#F8FAFC`  | `#0F172A`       | `#2563EB`     |
-| Funciones      | `#FFFFFF`  | `#0F172A`       | `#2563EB`     |
-| Cómo funciona  | `#F8FAFC`  | `#0F172A`       | `#2563EB`     |
-| Precios        | `#FFFFFF`  | `#0F172A`       | `#2563EB`     |
-| Gymoss         | `#1E3A8A`  | `#FFFFFF`       | `#93C5FD`     |
-| Footer         | `#0F172A`  | `#94A3B8`       | `#FFFFFF`     |
+| Sección        | Fondo light | Fondo dark  | Acento        |
+|----------------|-------------|-------------|---------------|
+| Hero           | `#F8FAFC`   | `#0F172A`   | `#2563EB`     |
+| Funciones      | `#FFFFFF`   | `#0F172A`   | `#2563EB`     |
+| Cómo funciona  | `#F8FAFC`   | `#0A0F1A`   | `#2563EB`     |
+| Precios        | `#FFFFFF`   | `#0F172A`   | `#2563EB`     |
+| Gymoss         | `#1E3A8A`   | `#1E3A8A`   | `#93C5FD`     |
+| Footer         | `#0F172A`   | `#0F172A`   | `#FFFFFF`     |

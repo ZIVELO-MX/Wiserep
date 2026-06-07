@@ -6,7 +6,7 @@ export default function GymossSection() {
           Ecosistema
         </span>
 
-        <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+        <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mb-6">
           Parte del ecosistema Gymoss
         </h2>
 

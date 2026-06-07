@@ -23,6 +23,14 @@ export const metadata: Metadata = {
   },
 };
 
+const themeScript = `
+try {
+  const t = localStorage.getItem('theme');
+  const d = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if (t === 'dark' || (!t && d)) document.documentElement.classList.add('dark');
+} catch(e) {}
+`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -30,6 +38,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${geistSans.variable} ${plusJakarta.variable} h-full antialiased`}>
+      <head>
+        {/* Blocking script to set theme before paint — prevents flash */}
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );

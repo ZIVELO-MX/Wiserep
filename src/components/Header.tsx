@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Logo from "./Logo";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -21,10 +22,11 @@ export default function Header() {
           <Link href="#gymoss" className="hover:text-[#2563EB] transition-colors">Gymoss</Link>
         </nav>
 
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden md:flex items-center gap-2">
+          <ThemeToggle />
           <a
             href="mailto:contacto@zivelo.dev"
-            className="text-sm font-medium text-[#475569] dark:text-[#94A3B8] hover:text-[#2563EB] transition-colors"
+            className="text-sm font-medium text-[#475569] dark:text-[#94A3B8] hover:text-[#2563EB] transition-colors px-2"
           >
             Contactar
           </a>
@@ -36,19 +38,22 @@ export default function Header() {
           </Link>
         </div>
 
-        <button
-          className="md:hidden p-2 text-[#475569] dark:text-[#94A3B8]"
-          onClick={() => setOpen(!open)}
-          aria-label="Menú"
-        >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            {open ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
-        </button>
+        <div className="md:hidden flex items-center gap-2">
+          <ThemeToggle />
+          <button
+            className="p-2 text-[#475569] dark:text-[#94A3B8]"
+            onClick={() => setOpen(!open)}
+            aria-label="Menú"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {open ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
+        </div>
       </div>
 
       {open && (

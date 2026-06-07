@@ -13,7 +13,7 @@ export default function Hero() {
               Parte del ecosistema Gymoss
             </span>
 
-            <h1 className="text-4xl sm:text-5xl font-bold text-[#0F172A] dark:text-[#F1F5F9] leading-tight mb-6">
+            <h1 className="font-display text-4xl sm:text-5xl font-bold text-[#0F172A] dark:text-[#F1F5F9] leading-tight mb-6">
               Entrena mejor,{" "}
               <span className="text-[#2563EB]">repetición<br className="hidden sm:block" /> por repetición.</span>
             </h1>
