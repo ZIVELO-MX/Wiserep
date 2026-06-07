@@ -1,11 +1,14 @@
 import Link from "next/link";
+import Logo from "./Logo";
 
 export default function Footer() {
   return (
     <footer className="bg-[#0F172A] text-[#94A3B8] py-14 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
         <div className="lg:col-span-1">
-          <div className="text-white font-bold text-xl mb-2">WiseRep</div>
+          <div className="mb-3">
+            <Logo size={32} wordmarkColor="white" />
+          </div>
           <p className="text-sm leading-relaxed mb-3">
             Entrena mejor, repetición por repetición.
           </p>

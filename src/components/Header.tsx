@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Logo from "./Logo";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -9,8 +10,8 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-[#E2E8F0]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="text-xl font-bold text-[#1E3A8A] tracking-tight">
-          WiseRep
+        <Link href="/">
+          <Logo size={36} wordmarkColor="dark" />
         </Link>
 
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-[#475569]">
