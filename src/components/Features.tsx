@@ -4,6 +4,12 @@ import { useRef, useState, useEffect } from "react";
 
 const features = [
   {
+    icon: "🌙",
+    title: "Ajuste de carga por ciclo",
+    description:
+      "Adapta la intensidad de tu entrenamiento según tu ciclo menstrual. Opcional, privado y sin suposiciones — tú decides cuándo activarlo.",
+  },
+  {
     icon: "🗂️",
     title: "Rutinas organizadas",
     description:
@@ -38,12 +44,6 @@ const features = [
     title: "Nombres de ejercicios",
     description:
       "WiseRep entiende que un ejercicio puede tener varios nombres y te ayuda a mantener consistencia.",
-  },
-  {
-    icon: "⚖️",
-    title: "Ajuste de carga por ciclo",
-    description:
-      "Permite reducir temporalmente la intensidad o los pesos recomendados de forma opcional y privada.",
   },
   {
     icon: "👥",
