@@ -1,3 +1,7 @@
+"use client";
+
+import { useRef, useState, useEffect } from "react";
+
 const features = [
   {
     icon: "🗂️",
@@ -45,35 +49,108 @@ const features = [
     icon: "👥",
     title: "Entrenadores",
     description:
-      "Diseñado para que en el futuro los entrenadores puedan asignar rutinas y dar seguimiento.",
+      "Diseñado para que los entrenadores puedan asignar rutinas y dar seguimiento en el futuro.",
   },
 ];
 
 export default function Features() {
-  return (
-    <section id="funciones" className="py-20 px-4 sm:px-6 bg-white">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-14">
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#0F172A] mb-4">
-            Funciones
-          </h2>
-          <p className="text-[#475569] text-lg max-w-xl mx-auto">
-            Todo lo que necesitas para entrenar con más control y progresión real.
-          </p>
-        </div>
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {features.map((f) => (
-            <div
-              key={f.title}
-              className="bg-[#F8FAFC] border border-[#E2E8F0] rounded-2xl p-6 hover:border-[#2563EB]/30 hover:shadow-sm transition-all"
+  const scrollTo = (index: number) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const card = track.children[index] as HTMLElement;
+    track.scrollTo({ left: card.offsetLeft - track.offsetLeft, behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const onScroll = () => {
+      const cardWidth = (track.children[0] as HTMLElement)?.offsetWidth ?? 0;
+      setActive(Math.round(track.scrollLeft / (cardWidth + 24)));
+    };
+    track.addEventListener("scroll", onScroll, { passive: true });
+    return () => track.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const prev = () => scrollTo(Math.max(0, active - 1));
+  const next = () => scrollTo(Math.min(features.length - 1, active + 1));
+
+  return (
+    <section id="funciones" className="py-20 bg-white overflow-hidden">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="flex items-end justify-between mb-10">
+          <div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#0F172A] mb-2">
+              Funciones
+            </h2>
+            <p className="text-[#475569] text-base max-w-md">
+              Todo lo que necesitas para entrenar con más control y progresión real.
+            </p>
+          </div>
+
+          {/* Arrow controls */}
+          <div className="hidden sm:flex items-center gap-2 flex-shrink-0">
+            <button
+              onClick={prev}
+              disabled={active === 0}
+              aria-label="Anterior"
+              className="w-10 h-10 rounded-full border border-[#E2E8F0] flex items-center justify-center text-[#475569] hover:border-[#2563EB] hover:text-[#2563EB] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
             >
-              <div className="text-2xl mb-3">{f.icon}</div>
-              <h3 className="font-semibold text-[#0F172A] mb-2">{f.title}</h3>
-              <p className="text-sm text-[#475569] leading-relaxed">{f.description}</p>
-            </div>
-          ))}
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button
+              onClick={next}
+              disabled={active === features.length - 1}
+              aria-label="Siguiente"
+              className="w-10 h-10 rounded-full border border-[#E2E8F0] flex items-center justify-center text-[#475569] hover:border-[#2563EB] hover:text-[#2563EB] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
         </div>
+      </div>
+
+      {/* Carousel track — bleeds to edges on mobile */}
+      <div
+        ref={trackRef}
+        className="flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 px-4 sm:px-6 max-w-6xl mx-auto
+                   [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+        style={{ WebkitOverflowScrolling: "touch" }}
+      >
+        {features.map((f, i) => (
+          <div
+            key={f.title}
+            className="snap-start flex-shrink-0 w-64 sm:w-72 bg-[#F8FAFC] border border-[#E2E8F0] rounded-2xl p-6
+                       hover:border-[#2563EB]/40 hover:shadow-sm transition-all"
+          >
+            <div className="text-2xl mb-3">{f.icon}</div>
+            <h3 className="font-semibold text-[#0F172A] mb-2">{f.title}</h3>
+            <p className="text-sm text-[#475569] leading-relaxed">{f.description}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* Dot indicators */}
+      <div className="flex justify-center gap-1.5 mt-5">
+        {features.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => scrollTo(i)}
+            aria-label={`Ir a funciones ${i + 1}`}
+            className={`rounded-full transition-all ${
+              i === active
+                ? "w-5 h-1.5 bg-[#2563EB]"
+                : "w-1.5 h-1.5 bg-[#CBD5E1]"
+            }`}
+          />
+        ))}
       </div>
     </section>
   );
