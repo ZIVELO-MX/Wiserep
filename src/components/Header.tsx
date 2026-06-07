@@ -8,13 +8,13 @@ export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-[#E2E8F0]">
+    <header className="sticky top-0 z-50 bg-white/95 dark:bg-[#0F172A]/95 backdrop-blur border-b border-[#E2E8F0] dark:border-[#1E293B]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         <Link href="/">
           <Logo size={36} wordmarkColor="dark" />
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-[#475569]">
+        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-[#475569] dark:text-[#94A3B8]">
           <Link href="#funciones" className="hover:text-[#2563EB] transition-colors">Funciones</Link>
           <Link href="#como-funciona" className="hover:text-[#2563EB] transition-colors">Cómo funciona</Link>
           <Link href="#precios" className="hover:text-[#2563EB] transition-colors">Precios</Link>
@@ -24,7 +24,7 @@ export default function Header() {
         <div className="hidden md:flex items-center gap-3">
           <a
             href="mailto:contacto@zivelo.dev"
-            className="text-sm font-medium text-[#475569] hover:text-[#2563EB] transition-colors"
+            className="text-sm font-medium text-[#475569] dark:text-[#94A3B8] hover:text-[#2563EB] transition-colors"
           >
             Contactar
           </a>
@@ -37,7 +37,7 @@ export default function Header() {
         </div>
 
         <button
-          className="md:hidden p-2 text-[#475569]"
+          className="md:hidden p-2 text-[#475569] dark:text-[#94A3B8]"
           onClick={() => setOpen(!open)}
           aria-label="Menú"
         >
@@ -52,7 +52,7 @@ export default function Header() {
       </div>
 
       {open && (
-        <div className="md:hidden bg-white border-t border-[#E2E8F0] px-4 py-4 flex flex-col gap-4 text-sm font-medium text-[#475569]">
+        <div className="md:hidden bg-white dark:bg-[#0F172A] border-t border-[#E2E8F0] dark:border-[#1E293B] px-4 py-4 flex flex-col gap-4 text-sm font-medium text-[#475569] dark:text-[#94A3B8]">
           <Link href="#funciones" onClick={() => setOpen(false)}>Funciones</Link>
           <Link href="#como-funciona" onClick={() => setOpen(false)}>Cómo funciona</Link>
           <Link href="#precios" onClick={() => setOpen(false)}>Precios</Link>

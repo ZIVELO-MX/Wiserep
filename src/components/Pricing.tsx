@@ -47,13 +47,13 @@ const plans = [
 
 export default function Pricing() {
   return (
-    <section id="precios" className="py-20 px-4 sm:px-6 bg-white">
+    <section id="precios" className="py-20 px-4 sm:px-6 bg-white dark:bg-[#0F172A]">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-14">
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#0F172A] mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#0F172A] dark:text-[#F1F5F9] mb-4">
             Precios
           </h2>
-          <p className="text-[#475569] text-lg max-w-xl mx-auto">
+          <p className="text-[#475569] dark:text-[#94A3B8] text-lg max-w-xl mx-auto">
             Los precios finales se definirán durante la etapa piloto.
           </p>
         </div>
@@ -64,21 +64,21 @@ export default function Pricing() {
               key={plan.name}
               className={`rounded-2xl border p-8 flex flex-col gap-6 ${
                 plan.highlighted
-                  ? "bg-[#2563EB] border-[#2563EB] text-white shadow-xl shadow-blue-200"
-                  : "bg-[#F8FAFC] border-[#E2E8F0]"
+                  ? "bg-[#2563EB] border-[#2563EB] text-white shadow-xl shadow-blue-200 dark:shadow-blue-900/40"
+                  : "bg-[#F8FAFC] dark:bg-[#1E293B] border-[#E2E8F0] dark:border-[#334155]"
               }`}
             >
               <div>
                 <h3
                   className={`text-xl font-bold mb-1 ${
-                    plan.highlighted ? "text-white" : "text-[#0F172A]"
+                    plan.highlighted ? "text-white" : "text-[#0F172A] dark:text-[#F1F5F9]"
                   }`}
                 >
                   {plan.name}
                 </h3>
                 <p
                   className={`text-sm ${
-                    plan.highlighted ? "text-blue-100" : "text-[#475569]"
+                    plan.highlighted ? "text-blue-100" : "text-[#475569] dark:text-[#94A3B8]"
                   }`}
                 >
                   {plan.description}
@@ -86,7 +86,7 @@ export default function Pricing() {
                 {plan.price && (
                   <p
                     className={`mt-3 text-sm font-semibold ${
-                      plan.highlighted ? "text-blue-200" : "text-[#94A3B8]"
+                      plan.highlighted ? "text-blue-200" : "text-[#94A3B8] dark:text-[#475569]"
                     }`}
                   >
                     {plan.price}
@@ -106,7 +106,7 @@ export default function Pricing() {
                     </span>
                     <span
                       className={
-                        plan.highlighted ? "text-blue-50" : "text-[#475569]"
+                        plan.highlighted ? "text-blue-50" : "text-[#475569] dark:text-[#94A3B8]"
                       }
                     >
                       {f}

@@ -17,6 +17,10 @@ export const metadata: Metadata = {
   title: "WiseRep — Entrena mejor, repetición por repetición",
   description:
     "WiseRep te ayuda a seguir tus rutinas, registrar tus pesos, ajustar ejercicios y tomar mejores decisiones en cada entrenamiento.",
+  icons: {
+    icon: "/wiserep_logo_traced.svg",
+    apple: "/wiserep_logo_traced.png",
+  },
 };
 
 export default function RootLayout({

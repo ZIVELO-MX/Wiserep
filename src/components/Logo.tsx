@@ -26,7 +26,7 @@ export default function Logo({
       {showWordmark && (
         <span
           className={`font-bold tracking-tight leading-none ${
-            wordmarkColor === "white" ? "text-white" : "text-[#1E3A8A]"
+            wordmarkColor === "white" ? "text-white" : "text-[#1E3A8A] dark:text-white"
           }`}
           style={{ fontSize: size * 0.6 }}
         >

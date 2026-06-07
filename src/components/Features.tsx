@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 
 const features = [
   {
@@ -53,50 +53,64 @@ const features = [
   },
 ];
 
+const N = features.length;
+
 export default function Features() {
   const trackRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
 
-  const scrollTo = (index: number) => {
+  // Reliable scroll-to using viewport-relative coords so offsetParent chain doesn't matter
+  const scrollTo = useCallback((index: number, behavior: ScrollBehavior = "smooth") => {
     const track = trackRef.current;
     if (!track) return;
     const card = track.children[index] as HTMLElement;
-    track.scrollTo({ left: card.offsetLeft - track.offsetLeft, behavior: "smooth" });
-  };
+    if (!card) return;
+    const trackLeft = track.getBoundingClientRect().left;
+    const cardLeft = card.getBoundingClientRect().left;
+    track.scrollTo({ left: track.scrollLeft + (cardLeft - trackLeft), behavior });
+  }, []);
 
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
     const onScroll = () => {
-      const cardWidth = (track.children[0] as HTMLElement)?.offsetWidth ?? 0;
-      setActive(Math.round(track.scrollLeft / (cardWidth + 24)));
+      const card = track.children[0] as HTMLElement;
+      const gap = 20; // gap-5 = 20px
+      setActive(Math.round(track.scrollLeft / (card.offsetWidth + gap)));
     };
     track.addEventListener("scroll", onScroll, { passive: true });
     return () => track.removeEventListener("scroll", onScroll);
   }, []);
 
-  const prev = () => scrollTo((active - 1 + features.length) % features.length);
-  const next = () => scrollTo((active + 1) % features.length);
+  // Infinite: wrap-around uses instant scroll so there's no long reverse sweep
+  const prev = useCallback(() => {
+    const prevIdx = (active - 1 + N) % N;
+    scrollTo(prevIdx, active === 0 ? "instant" : "smooth");
+  }, [active, scrollTo]);
+
+  const next = useCallback(() => {
+    const nextIdx = (active + 1) % N;
+    scrollTo(nextIdx, active === N - 1 ? "instant" : "smooth");
+  }, [active, scrollTo]);
 
   return (
-    <section id="funciones" className="py-20 bg-white overflow-hidden">
+    <section id="funciones" className="py-20 bg-white dark:bg-[#0F172A] overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-end justify-between mb-10">
           <div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#0F172A] mb-2">
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#0F172A] dark:text-[#F1F5F9] mb-2">
               Funciones
             </h2>
-            <p className="text-[#475569] text-base max-w-md">
+            <p className="text-[#475569] dark:text-[#94A3B8] text-base max-w-md">
               Todo lo que necesitas para entrenar con más control y progresión real.
             </p>
           </div>
 
-          {/* Arrow controls */}
           <div className="hidden sm:flex items-center gap-2 flex-shrink-0">
             <button
               onClick={prev}
               aria-label="Anterior"
-              className="w-10 h-10 rounded-full border border-[#E2E8F0] flex items-center justify-center text-[#475569] hover:border-[#2563EB] hover:text-[#2563EB] transition-colors"
+              className="w-10 h-10 rounded-full border border-[#E2E8F0] dark:border-[#1E293B] flex items-center justify-center text-[#475569] dark:text-[#94A3B8] hover:border-[#2563EB] hover:text-[#2563EB] transition-colors"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -105,7 +119,7 @@ export default function Features() {
             <button
               onClick={next}
               aria-label="Siguiente"
-              className="w-10 h-10 rounded-full border border-[#E2E8F0] flex items-center justify-center text-[#475569] hover:border-[#2563EB] hover:text-[#2563EB] transition-colors"
+              className="w-10 h-10 rounded-full border border-[#E2E8F0] dark:border-[#1E293B] flex items-center justify-center text-[#475569] dark:text-[#94A3B8] hover:border-[#2563EB] hover:text-[#2563EB] transition-colors"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -115,27 +129,25 @@ export default function Features() {
         </div>
       </div>
 
-      {/* Carousel track — bleeds to edges on mobile */}
       <div
         ref={trackRef}
-        className="flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 px-4 sm:px-6 max-w-6xl mx-auto
+        className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 px-4 sm:px-6 max-w-6xl mx-auto
                    [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
         style={{ WebkitOverflowScrolling: "touch" }}
       >
-        {features.map((f, i) => (
+        {features.map((f) => (
           <div
             key={f.title}
-            className="snap-start flex-shrink-0 w-64 sm:w-72 bg-[#F8FAFC] border border-[#E2E8F0] rounded-2xl p-6
+            className="snap-start flex-shrink-0 w-64 sm:w-72 bg-[#F8FAFC] dark:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] rounded-2xl p-6
                        hover:border-[#2563EB]/40 hover:shadow-sm transition-all"
           >
             <div className="text-2xl mb-3">{f.icon}</div>
-            <h3 className="font-semibold text-[#0F172A] mb-2">{f.title}</h3>
-            <p className="text-sm text-[#475569] leading-relaxed">{f.description}</p>
+            <h3 className="font-semibold text-[#0F172A] dark:text-[#F1F5F9] mb-2">{f.title}</h3>
+            <p className="text-sm text-[#475569] dark:text-[#94A3B8] leading-relaxed">{f.description}</p>
           </div>
         ))}
       </div>
 
-      {/* Dot indicators */}
       <div className="flex justify-center gap-1.5 mt-5">
         {features.map((_, i) => (
           <button
@@ -145,7 +157,7 @@ export default function Features() {
             className={`rounded-full transition-all ${
               i === active
                 ? "w-5 h-1.5 bg-[#2563EB]"
-                : "w-1.5 h-1.5 bg-[#CBD5E1]"
+                : "w-1.5 h-1.5 bg-[#CBD5E1] dark:bg-[#334155]"
             }`}
           />
         ))}
