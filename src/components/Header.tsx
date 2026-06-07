@@ -40,6 +40,7 @@ export default function Header() {
             className="p-2 text-[#475569] dark:text-[#94A3B8]"
             onClick={() => setOpen(!open)}
             aria-label="Menú"
+            aria-expanded={open}
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {open ? (
@@ -52,20 +53,25 @@ export default function Header() {
         </div>
       </div>
 
-      {open && (
-        <div className="md:hidden bg-white dark:bg-[#0B1120] border-t border-[#E2E8F0] dark:border-[#1E293B] px-6 py-5 flex flex-col gap-4 text-[15px] font-medium text-[#475569] dark:text-[#94A3B8]">
-          <Link href="#funciones" onClick={() => setOpen(false)}>Funciones</Link>
-          <Link href="#como-funciona" onClick={() => setOpen(false)}>Cómo funciona</Link>
-          <Link href="#precios" onClick={() => setOpen(false)}>Precios</Link>
+      {/* Mobile menu — animated with CSS max-height + opacity */}
+      <div
+        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+          open ? "max-h-72 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <div className="bg-white dark:bg-[#0B1120] border-t border-[#E2E8F0] dark:border-[#1E293B] px-6 py-5 flex flex-col gap-4 text-[15px] font-medium text-[#475569] dark:text-[#94A3B8]">
+          <Link href="#funciones" onClick={() => setOpen(false)} className="hover:text-[#0F172A] dark:hover:text-white transition-colors">Funciones</Link>
+          <Link href="#como-funciona" onClick={() => setOpen(false)} className="hover:text-[#0F172A] dark:hover:text-white transition-colors">Cómo funciona</Link>
+          <Link href="#precios" onClick={() => setOpen(false)} className="hover:text-[#0F172A] dark:hover:text-white transition-colors">Precios</Link>
           <Link
             href="#precios"
             onClick={() => setOpen(false)}
-            className="bg-[#2563EB] text-white text-center py-3 rounded-[26px] font-semibold text-[14px]"
+            className="bg-[#2563EB] text-white text-center py-3 rounded-[26px] font-semibold text-[14px] hover:bg-[#1D4ED8] transition-colors"
           >
             Empezar gratis
           </Link>
         </div>
-      )}
+      </div>
     </header>
   );
 }

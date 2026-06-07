@@ -29,18 +29,17 @@ const navColumns = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#F8FAFC] dark:bg-[#0B1120] px-4 sm:px-6 pt-4 pb-6">
-      {/* Large rounded card — the main visual element */}
-      <div className="max-w-[1280px] mx-auto bg-[#0F172A] border border-[#1E3A8A]/50 rounded-[32px] px-8 sm:px-12 pt-10 pb-8">
-        {/* Grid: logo + tagline left | nav columns right */}
+    <footer className="bg-[#F8FAFC] dark:bg-[#0F172A] px-4 sm:px-6 pt-4 pb-6">
+      {/* Rounded card: white / #1E293B */}
+      <div className="max-w-[1280px] mx-auto bg-white dark:bg-[#1E293B] border border-[#E2E8F0] dark:border-[#334155] rounded-[32px] px-8 sm:px-12 pt-10 pb-8">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 mb-10">
           {/* Brand area */}
           <div className="lg:col-span-2">
-            <Logo size={34} wordmarkColor="white" />
-            <p className="text-[14px] text-[#94A3B8] mt-4 leading-relaxed max-w-[220px]">
+            <Logo size={34} wordmarkColor="dark" />
+            <p className="text-[14px] text-[#475569] dark:text-[#94A3B8] mt-4 leading-relaxed max-w-[220px]">
               Entrena mejor, repetición por repetición.
             </p>
-            <p className="text-[12px] text-[#475569] mt-3 leading-relaxed">
+            <p className="text-[12px] text-[#94A3B8] dark:text-[#475569] mt-3 leading-relaxed">
               WiseRep es parte del ecosistema Gymoss,
               <br />
               desarrollado por Zivelo.
@@ -50,7 +49,7 @@ export default function Footer() {
           {/* Nav columns */}
           {navColumns.map((col) => (
             <div key={col.title}>
-              <h4 className="text-white font-semibold text-[13px] mb-5 tracking-wide">
+              <h4 className="text-[#0F172A] dark:text-white font-semibold text-[13px] mb-5 tracking-wide">
                 {col.title}
               </h4>
               <ul className="flex flex-col gap-3">
@@ -59,14 +58,14 @@ export default function Footer() {
                     {link.href.startsWith("mailto") ? (
                       <a
                         href={link.href}
-                        className="text-[14px] text-[#94A3B8] hover:text-white transition-colors"
+                        className="text-[14px] text-[#475569] dark:text-[#94A3B8] hover:text-[#0F172A] dark:hover:text-white transition-colors"
                       >
                         {link.label}
                       </a>
                     ) : (
                       <Link
                         href={link.href}
-                        className="text-[14px] text-[#94A3B8] hover:text-white transition-colors"
+                        className="text-[14px] text-[#475569] dark:text-[#94A3B8] hover:text-[#0F172A] dark:hover:text-white transition-colors"
                       >
                         {link.label}
                       </Link>
@@ -79,18 +78,16 @@ export default function Footer() {
         </div>
 
         {/* Bottom strip */}
-        <div className="border-t border-[#1E3A8A]/40 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-[12px] text-[#475569]">
+        <div className="border-t border-[#E2E8F0] dark:border-[#1E3A8A]/40 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-[12px] text-[#94A3B8] dark:text-[#475569]">
             © {new Date().getFullYear()} WiseRep · Gymoss · Zivelo
           </p>
-          <div className="flex items-center gap-5">
-            <a
-              href="mailto:contacto@zivelo.dev"
-              className="text-[12px] text-[#475569] hover:text-[#94A3B8] transition-colors"
-            >
-              contacto@zivelo.dev
-            </a>
-          </div>
+          <a
+            href="mailto:contacto@zivelo.dev"
+            className="text-[12px] text-[#94A3B8] dark:text-[#475569] hover:text-[#475569] dark:hover:text-[#94A3B8] transition-colors"
+          >
+            contacto@zivelo.dev
+          </a>
         </div>
       </div>
     </footer>
