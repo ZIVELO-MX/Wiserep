@@ -37,7 +37,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${geistSans.variable} ${plusJakarta.variable} h-full antialiased`}>
+    <html lang="es" className={`${geistSans.variable} ${plusJakarta.variable} h-full antialiased`} suppressHydrationWarning>
       <head>
         {/* Blocking script to set theme before paint — prevents flash */}
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
