@@ -16,6 +16,7 @@
 
 @theme inline {
   --font-sans: var(--font-geist-sans);
+  --font-display: var(--font-jakarta);
   --font-mono: var(--font-geist-mono);
 }
 
