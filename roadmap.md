@@ -1,6 +1,6 @@
 # WiseRep — Roadmap
 
-> Estado actual: **Phase 0.0.1 — Landing Page**
+> Estado actual: **Phase 0.0.1 — Landing Page** ✅ En revisión / PR #2
 
 ---
 
@@ -9,15 +9,17 @@
 **Goal:** Presentar WiseRep y validar interés.
 
 **Scope:**
-- Header con navegación y CTA
-- Hero section con tagline y descripción
-- Sección Funciones (8 feature cards)
+- Header sticky con navegación, CTA y toggle dark/light (View Transitions API)
+- Hero centrado con mockup de 3 teléfonos (±7°) estilo Foodnoms
+- Sección Funciones: 2 carruseles CSS infinitos (marquee-left / marquee-right), 8 features con iconos SVG; mobile 3 filas (2-3-3), desktop 2 filas (4-4)
+- Sección Testimoniales: carrusel CSS infinito con 4 testimonios
 - Sección Cómo funciona (4 pasos)
 - Sección Precios (Gratis / Premium / Gimnasios)
-- Sección ecosistema Gymoss
-- Footer con links y contacto
-- Contenido en español
-- Diseño responsive, color principal azul
+- CTA Section centrada con iconos de tipo de usuario (Gimnasios / Entrenadores / Atletas)
+- Footer Foodnoms-style: tarjeta `rounded-[32px]`, outer `#F8FAFC` / inner `white` en light; outer `#0F172A` / inner `#1E293B` en dark
+- Diseño responsive (mobile-first), tipografía Plus Jakarta Sans + Geist
+- Paleta: WiseRep Blue `#2563EB`, alternancia de fondos white / `#F8FAFC` entre secciones
+- Dark mode completo con CSS custom properties + `@variant dark`
 
 **Output:** `wiserep.zivelo.dev`
 
