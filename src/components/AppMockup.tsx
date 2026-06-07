@@ -14,28 +14,6 @@ export default function AppMockup() {
 
         {/* Screen */}
         <div className="bg-[#F8FAFC] rounded-[28px] overflow-hidden">
-
-          {/* Status bar */}
-          <div className="bg-white px-4 pt-2 pb-1 flex justify-between items-center">
-            <span className="text-[10px] font-semibold text-[#0F172A]">9:41</span>
-            <div className="flex items-center gap-1">
-              <div className="flex gap-0.5 items-end h-3">
-                <div className="w-0.5 h-1 bg-[#0F172A] rounded-sm" />
-                <div className="w-0.5 h-1.5 bg-[#0F172A] rounded-sm" />
-                <div className="w-0.5 h-2 bg-[#0F172A] rounded-sm" />
-                <div className="w-0.5 h-3 bg-[#0F172A] rounded-sm" />
-              </div>
-              <svg className="w-3 h-3 text-[#0F172A]" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M1.5 8.5a13 13 0 0121 0M5 12a10 10 0 0114 0M8.5 15.5a6 6 0 017 0M12 19h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none"/>
-              </svg>
-              <div className="w-5 h-2.5 border border-[#0F172A] rounded-sm relative">
-                <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-full w-0.5 h-1.5 bg-[#0F172A] rounded-r-sm" />
-                <div className="h-full w-3/4 bg-[#0F172A] rounded-sm" />
-              </div>
-            </div>
-          </div>
-
-          {/* App content */}
           <div className="bg-white pb-4">
 
             {/* App header */}

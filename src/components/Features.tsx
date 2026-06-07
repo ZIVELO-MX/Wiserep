@@ -75,8 +75,8 @@ export default function Features() {
     return () => track.removeEventListener("scroll", onScroll);
   }, []);
 
-  const prev = () => scrollTo(Math.max(0, active - 1));
-  const next = () => scrollTo(Math.min(features.length - 1, active + 1));
+  const prev = () => scrollTo((active - 1 + features.length) % features.length);
+  const next = () => scrollTo((active + 1) % features.length);
 
   return (
     <section id="funciones" className="py-20 bg-white overflow-hidden">
@@ -95,9 +95,8 @@ export default function Features() {
           <div className="hidden sm:flex items-center gap-2 flex-shrink-0">
             <button
               onClick={prev}
-              disabled={active === 0}
               aria-label="Anterior"
-              className="w-10 h-10 rounded-full border border-[#E2E8F0] flex items-center justify-center text-[#475569] hover:border-[#2563EB] hover:text-[#2563EB] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+              className="w-10 h-10 rounded-full border border-[#E2E8F0] flex items-center justify-center text-[#475569] hover:border-[#2563EB] hover:text-[#2563EB] transition-colors"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -105,9 +104,8 @@ export default function Features() {
             </button>
             <button
               onClick={next}
-              disabled={active === features.length - 1}
               aria-label="Siguiente"
-              className="w-10 h-10 rounded-full border border-[#E2E8F0] flex items-center justify-center text-[#475569] hover:border-[#2563EB] hover:text-[#2563EB] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+              className="w-10 h-10 rounded-full border border-[#E2E8F0] flex items-center justify-center text-[#475569] hover:border-[#2563EB] hover:text-[#2563EB] transition-colors"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
