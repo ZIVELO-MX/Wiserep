@@ -40,3 +40,44 @@ body {
 
 ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
 ::view-transition-old(root) { animation: none; }
+
+/* ─── Infinite marquee ─────────────────────────────────────────── */
+
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+/* rgba(255,255,255,0) → white gradient works correctly in both
+   alpha and luminance mask-mode implementations. */
+.carousel-fade {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    rgba(255,255,255,0) 0%,
+    #fff 7%,
+    #fff 93%,
+    rgba(255,255,255,0) 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    rgba(255,255,255,0) 0%,
+    #fff 7%,
+    #fff 93%,
+    rgba(255,255,255,0) 100%
+  );
+}
+
+.carousel-track:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel-track {
+    animation-play-state: paused !important;
+  }
+}

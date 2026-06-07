@@ -5,7 +5,6 @@ import Testimonials from "@/components/Testimonials";
 import HowItWorks from "@/components/HowItWorks";
 import Pricing from "@/components/Pricing";
 import CTACard from "@/components/CTACard";
-import GymossSection from "@/components/GymossSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -19,7 +18,6 @@ export default function Home() {
         <HowItWorks />
         <Pricing />
         <CTACard />
-        <GymossSection />
       </main>
       <Footer />
     </>
