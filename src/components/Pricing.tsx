@@ -42,7 +42,7 @@ const plans = [
 
 export default function Pricing() {
   return (
-    <section id="precios" className="py-24 px-6 bg-[#F8FAFC] dark:bg-[#0F172A]">
+    <section id="precios" className="py-24 px-6 bg-white dark:bg-[#0B1120]">
       <div className="max-w-[1200px] mx-auto">
         <div className="text-center mb-14">
           <h2 className="font-display font-bold leading-[1.2] mb-4">

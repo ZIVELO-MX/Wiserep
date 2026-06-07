@@ -2,9 +2,9 @@ import Link from "next/link";
 
 export default function CTACard() {
   return (
-    <section className="py-24 px-6 bg-white dark:bg-[#0B1120]">
+    <section className="py-24 px-6 bg-[#F8FAFC] dark:bg-[#0F172A]">
       <div className="max-w-[1200px] mx-auto">
-        <div className="bg-[#F8FAFC] dark:bg-[#1E293B] rounded-[26px] p-10 sm:p-14 flex flex-col sm:flex-row items-center justify-between gap-8 border border-[#E2E8F0] dark:border-[#334155]">
+        <div className="bg-white dark:bg-[#1E293B] rounded-[26px] p-10 sm:p-14 flex flex-col sm:flex-row items-center justify-between gap-8 border border-[#E2E8F0] dark:border-[#334155]">
           <div className="text-center sm:text-left max-w-xl">
             <h2 className="font-display font-bold leading-[1.2] mb-3">
               <span className="text-[#2563EB] text-[28px] sm:text-[32px]">Empieza hoy</span>{" "}

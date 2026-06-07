@@ -19,7 +19,6 @@ export default function Header() {
           <Link href="#funciones" className="hover:text-[#0F172A] dark:hover:text-white transition-colors">Funciones</Link>
           <Link href="#como-funciona" className="hover:text-[#0F172A] dark:hover:text-white transition-colors">Cómo funciona</Link>
           <Link href="#precios" className="hover:text-[#0F172A] dark:hover:text-white transition-colors">Precios</Link>
-          <Link href="#gymoss" className="hover:text-[#0F172A] dark:hover:text-white transition-colors">Gymoss</Link>
         </nav>
 
         <div className="hidden md:flex items-center gap-3">
@@ -58,7 +57,6 @@ export default function Header() {
           <Link href="#funciones" onClick={() => setOpen(false)}>Funciones</Link>
           <Link href="#como-funciona" onClick={() => setOpen(false)}>Cómo funciona</Link>
           <Link href="#precios" onClick={() => setOpen(false)}>Precios</Link>
-          <Link href="#gymoss" onClick={() => setOpen(false)}>Gymoss</Link>
           <Link
             href="#precios"
             onClick={() => setOpen(false)}
